@@ -1,1 +1,15 @@
-screenfetch
+[0m[1;32m                                            [0m[37m palaktyagi[0m[1m@[0m[0m[37mPalaks-MacBook-Pro.local[0m
+[0m[1;32m                                            [0m[37m OS:[0m unknown [0m
+[0m[1;32m UUU     UUU NNN      NNN IIIII XXX     XXXX[0m[37m Kernel:[0m arm64 Darwin 20.6.0[0m
+[0m[1;32m UUU     UUU NNNN     NNN  III    XX   xXX  [0m[37m Uptime:[0m [0m
+[0m[1;32m UUU     UUU NNNNN    NNN  III     XX xXX   [0m[37m Packages:[0m Unknown[0m
+[0m[1;32m UUU     UUU NNN NN   NNN  III      XXXX    [0m[37m Shell:[0m 5168[0m
+[0m[1;32m UUU     UUU NNN  NN  NNN  III      xXX     [0m[37m Disk:[0m  /  ()[0m
+[0m[1;32m UUU     UUU NNN   NN NNN  III     xXXXX    [0m[37m CPU:[0m Unknown[0m
+[0m[1;32m UUU     UUU NNN    NNNNN  III    xXX  XX   [0m[37m RAM:[0m [0m
+[0m[1;32m  UUUuuuUUU  NNN     NNNN  III   xXX    XX  [0m
+[0m[1;32m    UUUUU    NNN      NNN IIIII xXXx    xXXx[0m
+[0m[1;32m                                            [0m
+[0m[1;32m                                            [0m
+[0m[1;32m                                            [0m
+[0m[1;32m                                            [0m
