@@ -1,1 +1,6 @@
+<<<<<<< HEAD
 Hi, my name is Palak Tyagi and my Github user name is palak1022≈.
+=======
+Hi, my name is Palak Tyagi and my Github user name is palak1022.
+
+>>>>>>> cf9159c747e7ad335a07575c2c16704d0cdd08c0
