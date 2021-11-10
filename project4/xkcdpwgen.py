@@ -1,81 +1,43 @@
+import string
 import random
 
-def get_words(word_path):
-    '''
-    function returning a list of words based on a text file.
-    return type: list
-    '''
-    word_file = word_path
-    with open(word_file,'r') as file:
-        word_list = list(file) #creates a list incl. /newline
-    return word_list
 
-def generate_random_words(word_source, word_count):
-    '''
-    function generating a list of random words based on a word source list
-    and amount of words requested.
-    return type: list
-    '''
-    password_words =[]
-    for words in range(0,word_count):
-        random_index = random.randint(0,len(word_source)-1)
-        password_words.append(word_source[random_index].strip())
+def generate(length=35, digits_count=5, upper_count=5, special_count=5):
+    lower_count = max(0, length - digits_count - upper_count - special_count)
 
-    return password_words
+    digits = random.sample(string.digits, digits_count)
+    specials = random.sample(string.punctuation, special_count)
+    upper = random.sample(string.ascii_uppercase, upper_count)
+    lower = random.sample(string.ascii_lowercase, lower_count)
 
-def generate_special_char(amount):
-    '''
-    function returning a string of special characters as long as requested in amount
-    return type: string
-    '''
-    password_special_characters =''
-    special_characters = '''!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~\''''
-    character_count = 0
-    while character_count < amount:
-        password_special_characters += special_characters[random.randint(0,len(special_characters)-1)]
-        character_count += 1
+    password = list(digits + upper + lower + specials)
+    random.shuffle(password)
+    return "".join(password)
 
-    return password_special_characters
 
-def generate_random_number(padding):
-    '''
-    function returning a random number with a length determined by padding.
-    fortmat will be able to return a number with leading 0s, hence its return value
-    return type: string
-    '''
-    password_number = ''
-    padding_count = 0
-    while padding_count < padding:
-        random_number = str(random.randint(0,9))
-        password_number += random_number
-        padding_count += 1
-    return password_number
+def main():
+    import argparse
 
-def generate_password(all_words, word_count, separator, padding=2, special = True, special_amount=1):
-    '''
-    funtion that returns a password based on user input
-    all_words: a list containing strings
-    word_count: how many words we want
-    separator: how the separator looks.
-    padding: padding for our random number
-    special: optional if we want special character or not in our password
-    special_amount: how many special characters we want.
-    append order: words-number-special
-    return type string
-    '''
-    new_password = generate_random_words(all_words,word_count)
-    new_numbers = generate_random_number(padding)
-    new_password.append(new_numbers)
-    if special:
-        new_special = generate_special_char(special_amount)
-        new_password.append(new_special)
-        
-    return (separator.join(new_password))
+    parser = argparse.ArgumentParser(description='Password generator')
+    parser.add_argument("-l", '--length', type=int, default=35,
+                        help='Password length.')
+    parser.add_argument("-d", '--digits_count', type=int, default=5,
+                        help='Digits count.')
+    parser.add_argument("-u", '--upper_count', type=int, default=5,
+                        help='Uppper characters count.')
+    parser.add_argument("-s", '--special_count', default=5,
+                        type=int, help='Special characters count.')
 
-def mains():
-    words = get_words('/Users/palaktyagi/cybersecurity2550/project4.xkcdpwgen.py')
-    print(generate_password(words,2,'_',5,True,2))
+    args = parser.parse_args()
+    password = generate(
+        length=args.length,
+        digits_count=args.digits_count,
+        upper_count=args.upper_count,
+        special_count=args.special_count
+    )
 
-if __name__ == '__mains__'
-    mains()
+    print(password)
 
+
+if __name__ == "__main__":
+    main()
