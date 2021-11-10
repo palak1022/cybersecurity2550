@@ -76,6 +76,6 @@ def mains():
     words = get_words('/Users/palaktyagi/cybersecurity2550/project4/xkcdpwgen.py')
     print(generate_password(words,2,'_',5,True,2))
 
-if __name__ == '__mains__'
+if __name__ == '__main__':
     mains()
 
