@@ -31,8 +31,8 @@ def main():
     args = parser.parse_args()
     password = generate(
         length=args.length,
-        digits_count=args.digits_count,
         upper_count=args.upper_count,
+        digits_count=args.digits_count,
         special_count=args.special_count
     )
 
