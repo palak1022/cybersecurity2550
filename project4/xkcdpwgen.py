@@ -10,7 +10,7 @@ def generate(length=35, digits_count=5, upper_count=5, special_count=5):
     upper = random.sample(string.ascii_uppercase, upper_count)
     lower = random.sample(string.ascii_lowercase, lower_count)
 
-    password = list(digits + upper + lower + specials)
+    password = list(upper + digits + lower + specials)
     random.shuffle(password)
     return "".join(password)
 
