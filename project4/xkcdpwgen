@@ -13,7 +13,7 @@ with open(word_file, 'r') as words:
         word = line.strip().lower()
     
             word_list.append(word)
-def generate(length=4, digits_count=0, upper_count=0, special_count=0):
+def generate(word = 4, length=4, digits_count=0, upper_count=0, special_count=0):
   
     lower_count = max(0, length - digits_count - upper_count - special_count)
 
@@ -31,7 +31,10 @@ def main():
     import argparse
 
     parser = argparse.ArgumentParser(description='Password generator')
-    parser.add_argument("-w", '--length', type=int, default=4,
+    arser.add_argument("-w", '--word', type=int, default=4,
+                        help='Password length.')
+    
+    parser.add_argument("-l", '--length', type=int, default=4,
                         help='Password length.')
     parser.add_argument("-n", '--digits_count', type=int, default=0,
                         help='Digits count.')
