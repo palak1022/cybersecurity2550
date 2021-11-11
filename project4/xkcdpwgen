@@ -4,7 +4,7 @@ import string
 import random
 
 
-def generate(length=35, digits_count=5, upper_count=5, special_count=5):
+def generate(length=4, digits_count=5, upper_count=5, special_count=5):
     lower_count = max(0, length - digits_count - upper_count - special_count)
 
     digits = random.sample(string.digits, digits_count)
