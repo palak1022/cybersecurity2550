@@ -1,54 +1,55 @@
 #!/usr/bin/env python3
 
-import string
 import random
+import argparse
 
+parser = argparse.ArgumentParser(description="~~~Generate a password using the XKCD method~~~")
+parser.add_argument("-w", "--words", type=int, default=4,
+                    help="include WORDS words in the password ")
+parser.add_argument("-n", "--numbers", type=int, default=0,
+                    help="insert NUMBERS random numbers in the password")
+parser.add_argument("-c", "--caps", type=int, default=0,
+                    help="capitalize the first letter of CAPS random words")
+parser.add_argument("-s", "--symbols", type=int, default=0,
+                    help="insert SYMBOLS random symbols in the password")
 
-word_file = "words.txt"
-word_list = []
-# fill up the word_list
-with open(word_file, 'r') as words:
-    for line in words:
-        # remove white space and make everything lowercase
-        word = line.strip().lower()
+args = parser.parse_args()
 
-            word_list.append(word)
+openWordlist = open("words.txt")
 
-def generate(word = 4, digits_count=0, upper_count=0, special_count=0):
-  
-   words=random.choice(word_list)
-   numbers = random.sample(string.digits, digits_count)
-  symbols = random.sample(string.punctuation, special_count)
-   caps = random.sample(string.ascii_uppercase, upper_count)
-    password = list(words + caps + numbers + symbols)
-    random.shuffle(password)
-    return "".join(password)
+wordlist = openWordlist.read().splitlines()
 
+wordSubset = random.sample(wordlist, args.words)
 
-def main():
-    import argparse
+capsCount = 0
+capsList = []
+if (args.caps > 0 and args.caps <= args.words):
+    capsSubset = random.sample(wordSubset, args.caps)
+    wordSubset = list(set(wordSubset) - set(capsSubset))
+    while (capsCount < args.caps):
+        capsList.append(capsSubset[capsCount].title())
+        capsCount += 1
 
-    parser = argparse.ArgumentParser(description='Password generator')
-    arser.add_argument("-w", '--words', type=int, default=4,
-                        help='Password length.')
+    wordSubset = wordSubset + capsList
+    random.shuffle(wordSubset)
 
-    parser.add_argument("-n", '--numbers', type=int, default=0,
-                        help='Digits count.')
-    parser.add_argument("-c", '--caps', type=int, default=0,
-                        help='Uppper characters count.')
-    parser.add_argument("-s", '--symbols', default=0,
+numCount = 0
+numList = []
+if (args.numbers > 0):
+    while (numCount < args.numbers):
+        tempList = [str(random.randint(0, 9))]
+        numCount += 1
+        numList = numList + tempList
 
+    wordSubset = wordSubset + numList
+    random.shuffle(wordSubset)
 
-    args = parser.parse_args()
-    password = generate(
-        word = args.word,
-        upper_count=args.upper_count,
-        digits_count=args.digits_count,
-        special_count=args.special_count
-    )
+if (args.symbols > 0):
+    symList = ["~","!","@","#","$","%","^","&","*",".",":",";"]
+    symSubset = random.sample(symList, args.symbols)
 
-    print(password)
+    wordSubset = wordSubset + symSubset
+    random.shuffle(wordSubset)
 
-
-if __name__ == "__main__":
-    main()
+password = "".join(wordSubset)
+print(password)
